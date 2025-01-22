@@ -10,6 +10,7 @@ import { useAtom } from "jotai";
 import {
   ageRange,
   breeds,
+  cityFilter,
   filterCities,
   filterStates,
   maxAge,
@@ -37,6 +38,7 @@ export default function CustomAccordion({
   const [, setSelectedDogCities] = useAtom(selectedFilterCities);
   const [, setDogZipCodes] = useAtom(zipCodes);
   const [, setDogAgeRange] = useAtom(ageRange);
+  const [, setSelectedCityFilter] = useAtom(cityFilter);
 
   /*Function to clear individual filters */
   const clearFilter = () => {
@@ -52,6 +54,7 @@ export default function CustomAccordion({
       case "Location":
         setDogCities([]);
         setDogStates([]);
+        setSelectedCityFilter("");
         setSelectedDogCities([]);
         setSelectedDogStates([]);
         setDogZipCodes([]);

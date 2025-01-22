@@ -25,3 +25,4 @@ export const filterCities = atom<Location[]>([]);
 export const selectedFilterStates = atom<string[]>([]);
 export const selectedFilterCities = atom<string[]>([]);
 export const ageRange = atom<number[]>([0, 100]);
+export const cityFilter = atom<string>("");

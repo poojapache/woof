@@ -7,10 +7,12 @@ import {
   Select,
   MenuItem,
   SelectChangeEvent,
+  TextField,
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useAtom } from "jotai";
 import {
+  cityFilter,
   error,
   errorMessage,
   filterCities,
@@ -36,6 +38,8 @@ export default function LocationFilterDetails(): JSX.Element {
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [, setErrorOcurred] = useAtom(error);
   const [, setErrorOcurredMsg] = useAtom(errorMessage);
+  const [selectedCityFilter, setSelectedCityFilter] =
+    useAtom<string>(cityFilter);
 
   const DEFAULT_SIZE = 25;
 
@@ -44,6 +48,7 @@ export default function LocationFilterDetails(): JSX.Element {
     try {
       const response = data as State[];
       setStates(response || []);
+      return response;
     } catch (err: any) {
       setErrorOcurred(true);
       setErrorOcurredMsg(err);
@@ -52,16 +57,26 @@ export default function LocationFilterDetails(): JSX.Element {
   };
 
   /*Function to call the api fetch cities based on selected states */
-  const fetchCities = async (stateFilters: string[], page: number) => {
+  const fetchCities = async (
+    stateFilters: string[],
+    page: number,
+    city: string = ""
+  ) => {
     try {
       const response = await locations.searchLocation({
         states: stateFilters,
+        city,
         size: DEFAULT_SIZE,
         from: page * DEFAULT_SIZE,
       });
 
-      setCities((prevCities) => [...prevCities, ...(response.results || [])]);
+      setCities((prevCities) =>
+        page === 0
+          ? response.results || []
+          : [...prevCities, ...(response.results || [])]
+      );
       setHasMore(response.results && response.results.length === DEFAULT_SIZE);
+      return response;
     } catch (err: any) {
       setErrorOcurred(true);
       setErrorOcurredMsg(err);
@@ -79,6 +94,18 @@ export default function LocationFilterDetails(): JSX.Element {
     setHasMore(true);
     if (selected.length > 0) {
       fetchCities(selected, 0);
+    }
+  };
+
+  /*Function to handle changed city name in Text Fields */
+  const handleCityFilterChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const value = event.target.value;
+    setSelectedCityFilter(value);
+    setPage(0);
+    if (selectedStates.length > 0) {
+      fetchCities(selectedStates, 0, value);
     }
   };
 
@@ -126,6 +153,13 @@ export default function LocationFilterDetails(): JSX.Element {
       <div className="shadow-md p-2 mb-2">
         <Typography variant="subtitle1">Select Cities</Typography>
         <div className={`max-h-40 overflow-y-auto`}>
+          <TextField
+            fullWidth
+            variant="outlined"
+            placeholder="Enter complete city name"
+            value={selectedCityFilter}
+            onChange={handleCityFilterChange}
+          />
           <FormGroup>
             {selectedStates.length > 0 ? (
               cities.map((city, index) => (

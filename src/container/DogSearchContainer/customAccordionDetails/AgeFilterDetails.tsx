@@ -1,10 +1,9 @@
 import { Box, Slider, Typography } from "@mui/material";
 import { useAtom } from "jotai";
-import { useState } from "react";
-import { minAge, maxAge } from "../../../globalStore/atom";
+import { minAge, maxAge, ageRange } from "../../../globalStore/atom";
 
 export default function AgeFilterDetails(): JSX.Element {
-  const [ageRange, setAgeRange] = useState<number[]>([0, 100]);
+  const [dogAgeRange, setDogAgeRange] = useAtom<number[]>(ageRange);
   const [, setDogMinAge] = useAtom(minAge);
   const [, setDogMaxAge] = useAtom(maxAge);
 
@@ -12,7 +11,7 @@ export default function AgeFilterDetails(): JSX.Element {
   const handleAgeChange = (event: Event, newValue: number[]) => {
     setDogMinAge(newValue[0]);
     setDogMaxAge(newValue[1]);
-    setAgeRange(newValue);
+    setDogAgeRange(newValue);
   };
 
   return (
@@ -21,7 +20,7 @@ export default function AgeFilterDetails(): JSX.Element {
         Select Age Range
       </Typography>
       <Slider
-        value={ageRange}
+        value={dogAgeRange}
         onChange={(event, newValue) =>
           handleAgeChange(event, newValue as number[])
         }
@@ -38,7 +37,7 @@ export default function AgeFilterDetails(): JSX.Element {
         }}
       />
       <Typography>
-        Selected Range: {ageRange[0]} - {ageRange[1]} years
+        Selected Range: {dogAgeRange[0]} - {dogAgeRange[1]} years
       </Typography>
     </Box>
   );

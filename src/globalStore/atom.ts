@@ -1,15 +1,8 @@
 import {atom} from 'jotai';
+import State from '../interfaces/State';
+import Dog from '../interfaces/Dog';
+import Location from '../interfaces/Location';
 
-interface Dog {
-    id: string;
-    img: string;
-    name: string;
-    age: number;
-    zip_code: string;
-    breed: string;
-    city?: string;
-    state?: string;
-  }
 export const isLoginClicked = atom(false);
 export const userName = atom<string>("");
 export const userEmail = atom<string>("");
@@ -27,3 +20,8 @@ export const selectedDogs = atom<Dog[]>([]);
 export const selectedStates = atom<string[]>([]);
 export const error = atom<boolean>(false);
 export const errorMessage = atom<string>("");
+export const filterStates = atom<State[]>([]);
+export const filterCities = atom<Location[]>([]);
+export const selectedFilterStates = atom<string[]>([]);
+export const selectedFilterCities = atom<string[]>([]);
+export const ageRange = atom<number[]>([0, 100]);

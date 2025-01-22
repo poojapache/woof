@@ -1,16 +1,14 @@
-interface ButtonProps {
-  title: string;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
-  icon?: React.ReactNode;
-  disabled?: boolean;
-}
-
 export default function Button({
   onClick,
   title,
   icon = null,
   disabled = false,
-}: ButtonProps): JSX.Element {
+}: {
+  title: string;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  icon?: React.ReactNode;
+  disabled?: boolean;
+}): JSX.Element {
   return (
     <button
       className={`rounded-md shadow-md text-white px-5 py-3 float-right ${

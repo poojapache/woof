@@ -15,19 +15,22 @@ export default function Filters(): JSX.Element {
       }}
     >
       <Box>
-        <h1 className="text-3xl text-white text-bold">Filters</h1>
+        <h1 className="text-3xl text-white font-bold">Filters</h1>
         <Box className={`flex flex-col justify-space p-2`}>
           <CustomAccordion
             title="Filter by Breed"
             component={<BreedFilterDetails />}
+            filterName={"Breed"}
           />
           <CustomAccordion
             title="Filter by Location"
             component={<LocationFilterDetails />}
+            filterName={"Location"}
           />
           <CustomAccordion
             title="Filter by Age"
             component={<AgeFilterDetails />}
+            filterName={"Age"}
           />
         </Box>
       </Box>

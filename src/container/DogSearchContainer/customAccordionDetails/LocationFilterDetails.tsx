@@ -10,29 +10,27 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useAtom } from "jotai";
-import { error, errorMessage, zipCodes } from "../../../globalStore/atom";
+import {
+  error,
+  errorMessage,
+  filterCities,
+  filterStates,
+  selectedFilterCities,
+  selectedFilterStates,
+  zipCodes,
+} from "../../../globalStore/atom";
 import data from "../../../data/data.json";
 import { locations } from "../../../api/endpoints/locations";
-
-interface Location {
-  zip_code: string;
-  latitude: number;
-  longitude: number;
-  city: string;
-  state: string;
-  county: string;
-}
-
-interface State {
-  name: string;
-  abbreviation: string;
-}
+import Location from "../../../interfaces/Location";
+import State from "../../../interfaces/State";
 
 export default function LocationFilterDetails(): JSX.Element {
-  const [states, setStates] = useState<State[]>([]);
-  const [cities, setCities] = useState<Location[]>([]);
-  const [selectedStates, setSelectedStates] = useState<string[]>([]);
-  const [selectedCities, setSelectedCities] = useState<string[]>([]);
+  const [states, setStates] = useAtom<State[]>(filterStates);
+  const [cities, setCities] = useAtom<Location[]>(filterCities);
+  const [selectedStates, setSelectedStates] =
+    useAtom<string[]>(selectedFilterStates);
+  const [selectedCities, setSelectedCities] =
+    useAtom<string[]>(selectedFilterCities);
   const [, setSelectedZipCodes] = useAtom(zipCodes);
   const [page, setPage] = useState<number>(0);
   const [hasMore, setHasMore] = useState<boolean>(true);
@@ -108,7 +106,7 @@ export default function LocationFilterDetails(): JSX.Element {
 
   return (
     <>
-      <div style={{ marginBottom: "16px" }}>
+      <div className="mb-2">
         <Typography variant="subtitle1">Select States</Typography>
         <Select
           multiple
@@ -125,9 +123,9 @@ export default function LocationFilterDetails(): JSX.Element {
         </Select>
       </div>
 
-      <div style={{ marginBottom: "16px" }}>
+      <div className="shadow-md p-2 mb-2">
         <Typography variant="subtitle1">Select Cities</Typography>
-        <div className="h-40 overflow-y-auto">
+        <div className={`max-h-40 overflow-y-auto`}>
           <FormGroup>
             {selectedStates.length > 0 ? (
               cities.map((city, index) => (
@@ -154,18 +152,18 @@ export default function LocationFilterDetails(): JSX.Element {
             )}
           </FormGroup>
         </div>
+        {selectedStates.length > 0 && cities.length > 0 && (
+          <Button
+            variant="text"
+            color="primary"
+            onClick={handleShowMore}
+            disabled={!hasMore}
+            className="w-full"
+          >
+            Show More
+          </Button>
+        )}
       </div>
-
-      {selectedStates.length > 0 && cities.length > 0 && (
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleShowMore}
-          disabled={!hasMore}
-        >
-          Show More
-        </Button>
-      )}
     </>
   );
 }

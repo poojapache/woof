@@ -36,7 +36,7 @@ export default function BreedFilterDetails(): JSX.Element {
   };
 
   return (
-    <>
+    <div className="h-40 overflow-y-auto">
       <FormGroup>
         {breedList.map((breed, index) => (
           <FormControlLabel
@@ -51,6 +51,6 @@ export default function BreedFilterDetails(): JSX.Element {
           />
         ))}
       </FormGroup>
-    </>
+    </div>
   );
 }

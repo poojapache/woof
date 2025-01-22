@@ -66,7 +66,7 @@ export default function CustomAccordion({
   };
 
   return (
-    <div className="p-2">
+    <div className="p-2 max-w-96">
       <Accordion>
         <AccordionSummary
           expandIcon={<ArrowDropDownCircleRounded />}
@@ -78,7 +78,7 @@ export default function CustomAccordion({
             {title}
           </Typography>
         </AccordionSummary>
-        <AccordionDetails className="max-h-60 overflow-y-auto w-96 max-w-screen">
+        <AccordionDetails className="max-h-60 overflow-y-auto min-w-screen max-w-96">
           <>
             {component}
             <div className="flex justify-center p-2">

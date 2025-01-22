@@ -8,10 +8,10 @@ export default function PictureContainer() {
   return (
     <div
       className={`${
-        openLogin ? "w-3/5" : "w-full"
+        openLogin ? "w-3/5" : "w-screen"
       } h-full flex flex-col justify-center items-center`}
     >
-      <div className={`bg-white flex justify-center items-baseline w-screen`}>
+      <div className={`bg-white flex justify-center items-baseline w-full p-2`}>
         <DogSvg
           width={200}
           height={200}

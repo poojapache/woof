@@ -7,8 +7,7 @@ import LocationFilterDetails from "./customAccordionDetails/LocationFilterDetail
 export default function Filters(): JSX.Element {
   return (
     <div
-      // elevation={10}
-      className="min-h-screen max-w-md min-w-screen shadow-2xl bg-orange-500 flex flex-col justify-start p-4"
+      className="min-h-screen w-full shadow-2xl bg-orange-500 flex flex-col justify-start p-4"
       style={{
         backgroundColor: "#F97316",
         boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",

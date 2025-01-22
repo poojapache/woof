@@ -35,7 +35,7 @@ export default function DogSearchContainer({
   onReset: React.MouseEventHandler<HTMLButtonElement>;
 }): JSX.Element {
   const [dogList, setDogList] = useState<Dog[]>([]);
-  const [selectedDogList] = useAtom<Dog[]>(selectedDogs);
+  const [selectedDogList, setSelectedDogList] = useAtom<Dog[]>(selectedDogs);
   const [currentPage, setCurrentPage] = useAtom(page);
   const [size] = useAtom(defaultSize);
   const [count, setCount] = useAtom(dataCount);
@@ -100,6 +100,10 @@ export default function DogSearchContainer({
         setErrorOcurredMsg(err);
         return err;
       });
+  };
+
+  const onClickClearMatch = () => {
+    setSelectedDogList([]);
   };
 
   /*Function to close match popup */
@@ -211,7 +215,13 @@ export default function DogSearchContainer({
             onChange={handlePageChange}
             className="mt-4 mb-2"
           />
-          <div className="w-full">
+          <div className="w-full flex gap-4 justify-end">
+            <Button
+              title="Clear Match"
+              onClick={onClickClearMatch}
+              icon={null}
+              disabled={!selectedDogList || selectedDogList.length === 0}
+            />
             <Button
               title="Match"
               onClick={onClickMatch}

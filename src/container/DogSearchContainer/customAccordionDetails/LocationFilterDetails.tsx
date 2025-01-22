@@ -40,6 +40,7 @@ export default function LocationFilterDetails(): JSX.Element {
   const [, setErrorOcurredMsg] = useAtom(errorMessage);
   const [selectedCityFilter, setSelectedCityFilter] =
     useAtom<string>(cityFilter);
+  const [isSelectOpen, setIsSelectOpen] = useState<boolean>(false);
 
   const DEFAULT_SIZE = 25;
 
@@ -64,10 +65,11 @@ export default function LocationFilterDetails(): JSX.Element {
   ) => {
     try {
       const response = await locations.searchLocation({
-        states: stateFilters,
-        city,
         size: DEFAULT_SIZE,
         from: page * DEFAULT_SIZE,
+        ...(stateFilters &&
+          stateFilters.length > 0 && { states: stateFilters }),
+        ...(city && { city: city }),
       });
 
       setCities((prevCities) =>
@@ -104,7 +106,7 @@ export default function LocationFilterDetails(): JSX.Element {
     const value = event.target.value;
     setSelectedCityFilter(value);
     setPage(0);
-    if (selectedStates.length > 0) {
+    if (selectedStates.length > 0 || selectedCityFilter) {
       fetchCities(selectedStates, 0, value);
     }
   };
@@ -161,7 +163,8 @@ export default function LocationFilterDetails(): JSX.Element {
             onChange={handleCityFilterChange}
           />
           <FormGroup>
-            {selectedStates.length > 0 ? (
+            {(selectedStates.length > 0 || selectedCityFilter) &&
+            cities.length > 0 ? (
               cities.map((city, index) => (
                 <FormControlLabel
                   key={index}
@@ -180,9 +183,15 @@ export default function LocationFilterDetails(): JSX.Element {
                 />
               ))
             ) : (
-              <Typography color="textSecondary">
-                Please select at least one state to load cities.
-              </Typography>
+              <h1
+                className="p-2 text-slate-500"
+                style={{
+                  wordWrap: "break-word",
+                }}
+              >
+                Please select at least one state or enter a city name to load
+                cities.
+              </h1>
             )}
           </FormGroup>
         </div>

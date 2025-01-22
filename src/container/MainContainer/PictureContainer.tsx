@@ -11,7 +11,7 @@ export default function PictureContainer() {
         openLogin ? "w-3/5" : "w-full"
       } h-full flex flex-col justify-center items-center`}
     >
-      <div className={`bg-white flex justify-center items-baseline`}>
+      <div className={`bg-white flex justify-center items-baseline w-screen`}>
         <DogSvg
           width={200}
           height={200}

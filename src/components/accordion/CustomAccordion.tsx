@@ -78,10 +78,10 @@ export default function CustomAccordion({
             {title}
           </Typography>
         </AccordionSummary>
-        <AccordionDetails className="max-h-60 overflow-y-auto">
+        <AccordionDetails className="max-h-60 overflow-y-auto w-96 max-w-screen">
           <>
             {component}
-            <div className="w-full flex justify-center p-2">
+            <div className="flex justify-center p-2">
               <Button
                 title="Clear Filter"
                 onClick={clearFilter}

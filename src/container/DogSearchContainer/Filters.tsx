@@ -6,15 +6,15 @@ import LocationFilterDetails from "./customAccordionDetails/LocationFilterDetail
 
 export default function Filters(): JSX.Element {
   return (
-    <Paper
-      elevation={10}
-      className="min-h-screen max-w-md shadow-2xl bg-orange-500 flex flex-col justify-start p-4"
-      sx={{
+    <div
+      // elevation={10}
+      className="min-h-screen max-w-md min-w-screen shadow-2xl bg-orange-500 flex flex-col justify-start p-4"
+      style={{
         backgroundColor: "#F97316",
         boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
       }}
     >
-      <Box className="max-w-xl">
+      <Box>
         <h1 className="text-3xl text-white font-bold">Filters</h1>
         <Box className={`flex flex-col justify-space p-2`}>
           <CustomAccordion
@@ -34,6 +34,6 @@ export default function Filters(): JSX.Element {
           />
         </Box>
       </Box>
-    </Paper>
+    </div>
   );
 }

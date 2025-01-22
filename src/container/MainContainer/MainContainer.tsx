@@ -34,7 +34,7 @@ export default function MainContainer() {
       ) : (
         <>
           {!showHomePage ? (
-            <Box className="w-screen h-screen flex flex-col">
+            <Box className="w-screen h-screen flex flex-col min-h-fit">
               <Navbar handleOnClick={onLoginButtonClick} />
               <MainContentContainer />
             </Box>

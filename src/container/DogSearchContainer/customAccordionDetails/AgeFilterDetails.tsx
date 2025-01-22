@@ -15,7 +15,7 @@ export default function AgeFilterDetails(): JSX.Element {
   };
 
   return (
-    <Box width="100%" padding={2}>
+    <Box padding={2}>
       <Typography variant="h6" gutterBottom>
         Select Age Range
       </Typography>

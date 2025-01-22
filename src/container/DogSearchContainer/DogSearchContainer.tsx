@@ -177,11 +177,14 @@ export default function DogSearchContainer({
   ]);
 
   return (
-    <div className="flex flex-col h-full ">
-      <div className="flex flex-row flex-wrap bg-yellow-100 max-w-full">
+    <div className="flex flex-col h-full max-w-screen min-w-full">
+      <div className="flex flex-row flex-wrap bg-yellow-100">
         <Filters />
 
-        <div className="h-screen flex flex-col justify-start items-center p-6 flex-1 w-full">
+        <div
+          id="dog-list-conteiner"
+          className="h-screen flex flex-col justify-start items-center p-6 flex-1 w-full"
+        >
           <div className="w-full mb-4">
             <Button
               title={"Logout"}

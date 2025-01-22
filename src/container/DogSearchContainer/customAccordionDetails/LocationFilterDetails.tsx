@@ -134,7 +134,7 @@ export default function LocationFilterDetails(): JSX.Element {
   });
 
   return (
-    <>
+    <div>
       <div className="mb-2">
         <Typography variant="subtitle1">Select States</Typography>
         <Select
@@ -207,6 +207,6 @@ export default function LocationFilterDetails(): JSX.Element {
           </Button>
         )}
       </div>
-    </>
+    </div>
   );
 }

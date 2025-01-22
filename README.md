@@ -11,8 +11,8 @@ Modular and reusable components.
 
 ## Installation
 
-1. git clone https://github.com/your-username/your-repo-name.git
-2. cd your-repo-name
+1. git clone https://github.com/poojapache/woof.git
+2. cd "woof/frontend"
 3. npm install
 
 ## Usage

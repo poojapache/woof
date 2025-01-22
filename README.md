@@ -1,3 +1,34 @@
+# Project Title
+
+The aim of this project is to help a dog-lovers search through a database of shelter dogs, with the hope of finding a lucky dog a new home!
+
+## Features
+
+Customizable accordion filters using Material-UI.
+State management with Jotai for global application state.
+"Clear Filter" button for resetting individual filters.
+Modular and reusable components.
+
+## Installation
+
+1. git clone https://github.com/your-username/your-repo-name.git
+2. cd your-repo-name
+3. npm install
+
+## Usage
+
+npm start
+
+## State Management
+
+The project uses Jotai for managing global state. Here are the primary atoms:
+
+1. breeds: Stores the selected dog breeds.
+2. minAge and maxAge: Manage age filters.
+3. zipCodes: Tracks location filters.
+
+You can find these and other atoms in src/globalStore/atom.ts.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
